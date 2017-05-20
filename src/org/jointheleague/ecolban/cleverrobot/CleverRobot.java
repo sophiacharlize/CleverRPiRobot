@@ -1,3 +1,5 @@
+
+
 package org.jointheleague.ecolban.cleverrobot;
 
 /*********************************************************************************************
@@ -32,10 +34,20 @@ public class CleverRobot extends IRobotAdapter {
 	}
 	
 	private boolean loop() throws Exception{
-		System.out.println("LEFT SONAR: " + sonar.readSonar("left"));
-		Thread.sleep(1000);
-		System.out.println("RIGHT SONAR: " + sonar.readSonar("right"));
-		System.out.println("CENTER SONAR: " + sonar.readSonar("center"));
+		readSensors(100);
+		if(isBumpLeft()){
+			driveDirect(-100,-100);
+			Thread.sleep(2000);
+			driveDirect(100,0);
+			Thread.sleep(3000);
+			
+		}
+		if(isBumpRight()){
+			driveDirect(-100,-100);
+			Thread.sleep(2000);
+			driveDirect(0,100);
+			Thread.sleep(3000);
+		}
 		
 		return true;
 	}
